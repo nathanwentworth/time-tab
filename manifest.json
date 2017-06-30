@@ -1,10 +1,12 @@
 {
-  "name": "New Tab Links",
-  "description": "Text-based new tab page",
-  "version": "0.3",
+  "name": "Time Tab",
+  "description": "Minimalist new tab clock, with customizable background.",
+  "version": "1.2",
   "incognito": "split",
+  "icons": { "16": "icon16.png", "48": "icon48.png", "128": "icon128.png" },
+  "manifest_version": 2,
+  "permissions": ["storage"],
   "chrome_url_overrides": {
     "newtab": "index.html"
-  },
-  "manifest_version": 2
+  }
 }

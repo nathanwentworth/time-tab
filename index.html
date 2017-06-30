@@ -5,42 +5,113 @@
 	<meta charset="utf-8">
 	<style type="text/css">
 		body {
-			font-family:'monaco', monospace;
-			overflow: hidden; 
-			background-color:#eee;
-			color: #fff;
-			font-size:16px;
+			overflow: hidden;
+ 			font-family: 'Rubik', sans-serif;
+			font-size: 16px;
+			color: #394146;
+			-webkit-user-select: none;
+			user-select: none;
+			cursor: default;
+			background-position: center center;
+			background-repeat: no-repeat;
+			-webkit-background-size: cover;
+		  background-size: cover;
 		}
-		.background {
-			position:absolute;
-			top: 0;
-			left: 0;
-			width: 100vw;
-			height:65%;
-			background: #2D332F;
+		#main-container {
+			display: none;
+			align-items: center;
+			-webkit-align-items: center;
+			justify-content: center;
+			height: 100vh;
 		}
-		.background div {
-			position:absolute;
-			left:15%;
-			top:50%;
-			-webkit-transform:translateY(-50%);-moz-transform:translateY(-50%);-ms-transform:translateY(-50%);-o-transform:translateY(-50%);transform:translateY(-50%);
+		.hidden {
+			display: none;
+		}
+		.show {
+			display: initial;
+		}
+
+		.visible {
+			visibility: visible;
+		}
+
+		.invisible {
+			visibility: hidden;
+		}
+
+		#button-settings {
+			position: absolute;
+			bottom: 32px;
+			left: 32px;
+			width: 64px;
+			height: 64px;
+		}
+		#options {
+			position: absolute;
+			bottom: 32px;
+			right: 32px;
+			background: #eee;
+			padding: 32px;
+			border-radius: 6px;
+			box-shadow: 8px 8px 32px #000;
+		}
+		span {
+			font-size: 256px;
+		}
+		img {
+			width: 128px;
+			height: auto;
 		}
 		a {
-			color:#fff;
+			color:#394146;
 			text-decoration: none;
-			-o-transition:.3s;-ms-transition:.3s;-moz-transition:.3s;-webkit-transition:.3s;transition:.3s;
+			padding-right: 32px;
+		}
+		a:last-child {
+			padding-right: 0;
 		}
 	</style>
-	<title>::</title>
+	<title>new tab</title>
 </head>
 <body>
-<div class="background">
-	<div>
-		<p>/ <a href="https://getpocket.com/a/queue/list/">pocket</a> / <a href="http://superfuture.com/">sufu</a> / <a href="https://twitter.com/">tw</a></p>
-		<p>/ <a href="http://anilist.co/animelist/8155/nathan">anilist</a> / <a href="http://www.nyaa.se/">nyaa</a> / <a href="http://nibl.co.uk/bots.php">nibl</a></p>
-		<p>/ <a href="http://www.pixiv.net/mypage.php">pixiv</a> / <a href="http://gelbooru.com/">gel</a> / <a href="https://yande.re/">.re</a></p>
-	</div>
-</div>
+	<div id='main-container'>
+		<div id='clock'>
+ 			<span id="hour"></span><span id="hm-sep">:</span><span id="minute"></span><span id="ms-sep">:</span><span id="seconds"></span>
+		</div>
 
+		<div id='button-settings'>
+			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve">
+			<path id='gear' d="M20,14.5v-2.9l-1.8-0.3c-0.1-0.4-0.3-0.8-0.6-1.4l1.1-1.5l-2.1-2.1l-1.5,1.1c-0.5-0.3-1-0.5-1.4-0.6L13.5,5h-2.9l-0.3,1.8C9.8,6.9,9.4,7.1,8.9,7.4L7.4,6.3L5.3,8.4l1,1.5c-0.3,0.5-0.4,0.9-0.6,1.4L4,11.5v2.9l1.8,0.3c0.1,0.5,0.3,0.9,0.6,1.4l-1,1.5l2.1,2.1l1.5-1c0.4,0.2,0.9,0.4,1.4,0.6l0.3,1.8h3l0.3-1.8c0.5-0.1,0.9-0.3,1.4-0.6l1.5,1.1l2.1-2.1l-1.1-1.5c0.3-0.5,0.5-1,0.6-1.4L20,14.5z M12,16c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S13.7,16,12,16z"/>
+			</svg>
+		</div>
+
+		<div id='options' class="hidden">
+		  <p>Background: <input type="text" id="backColor" placeholder="#eee"></p>
+		  <p>(can take hex code or image url)</p>
+		  <p>Text Color: <input type="text" id="textColor" placeholder="#394146"></p>
+		  <p>(hex only)</p>
+		  <p>Font: <input type="text" id="font" placeholder="Rubik:500"></p>
+		  <p>(from <a href="https://fonts.google.com/">Google Fonts</a>)</p>
+
+		  <p><label>
+		    <input type="checkbox" id="sec">
+		    Show seconds?
+		  </label>
+		  <label>
+		    <input type="checkbox" id="military">
+		    24 Hour time?
+		  </label><label>
+		    <input type="checkbox" id="flashSep">
+		    Flash Separators?
+		  </label></p>
+
+		  <div id="status"></div>
+		  <button id="save">Save</button>
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="scripts.js"></script>
+	<!-- <script type="text/javascript" src="options.js"></script> -->
 </body>
 </html>
