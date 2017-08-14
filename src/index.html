@@ -16,9 +16,10 @@
 			background-repeat: no-repeat;
 			-webkit-background-size: cover;
 		  background-size: cover;
+		  opacity: 0;
 		}
 		#main-container {
-			display: none;
+			display: flex;
 			align-items: center;
 			-webkit-align-items: center;
 			justify-content: center;
@@ -39,12 +40,33 @@
 			visibility: hidden;
 		}
 
+		.fade-in {
+			animation: 0.2s forwards fade-in;
+		}
+
+		@keyframes fade-in {
+			0% {
+				opacity: 0;
+			}
+			50% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+
 		#button-settings {
 			position: absolute;
 			bottom: 32px;
 			left: 32px;
-			width: 64px;
-			height: 64px;
+			width: 48px;
+			height: 48px;
+			opacity: 0.3;
+			transition: opacity 0.2s;
+		}
+		#button-settings:hover {
+			opacity: 1;
 		}
 		#options {
 			position: absolute;
@@ -112,6 +134,5 @@
 
 
 	<script type="text/javascript" src="scripts.js"></script>
-	<!-- <script type="text/javascript" src="options.js"></script> -->
 </body>
 </html>
