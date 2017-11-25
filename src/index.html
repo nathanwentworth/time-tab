@@ -25,15 +25,10 @@
 			justify-content: center;
 			height: 100vh;
 		}
+
 		.hidden {
 			display: none;
-		}
-		.show {
-			display: initial;
-		}
-
-		.visible {
-			visibility: visible;
+			opacity: 0;
 		}
 
 		.invisible {
@@ -65,18 +60,22 @@
 			opacity: 0.3;
 			transition: opacity 0.2s;
 		}
-		#button-settings:hover {
+		#button-settings:hover, #button-settings.active {
 			opacity: 1;
 		}
 		#options {
 			position: absolute;
 			bottom: 32px;
-			right: 32px;
+			left: 32px;
 			background: #eee;
-			padding: 32px;
+			padding: 24px;
 			border-radius: 6px;
 			box-shadow: 8px 8px 32px #000;
 		}
+		#options *:first-child {
+			margin-top: 0;
+		}
+
 		span {
 			font-size: 256px;
 		}
@@ -129,6 +128,7 @@
 
 		  <div id="status"></div>
 		  <button id="save">Save</button>
+		  <button id="cancel">Cancel</button>
 		</div>
 	</div>
 
