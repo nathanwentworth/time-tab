@@ -59,13 +59,26 @@ function init() {
 }
 
 function load() {
-  let loadingOptions = browser.storage.local.get();
-  loadingOptions.then(onLoad, onError);
+  let loadingOptions = browser.storage.local.get(onLoad);
 }
 
 function onLoad(item) {
   console.log('loaded options')
   options = item || OPTION_DEFAULTS
+  if (item == undefined) {
+    options = OPTION_DEFAULTS
+  } else {
+    if (options.color) {
+      options.background = options.color;
+      console.log("deleted old variable name, replaced with new background")
+      delete options.color;
+    }
+    if (options.textcolor) {
+      options.textColor = options.textcolor;
+      console.log("deleted old variable name, replaced with new text color")
+      delete options.textcolor;
+    }
+  }
   loadOptions()
 }
 
@@ -180,7 +193,6 @@ function getFont() {
 function setFont() {
   options.font = options.font.trim();
   var fontToLoad = options.font.replace(' ', '+');
-  console.log(options.font);
 
   var link;
   if (document.getElementById('fontLink') != null) {
@@ -197,8 +209,6 @@ function setFont() {
   link.href = fontUrl;
 
   document.body.style.fontFamily = options.font.substring(0, options.font.indexOf(':'))
-  console.log(document.body.style);
-  console.log('font ' + options.font);
 }
 
 function save() {
@@ -237,8 +247,7 @@ function showOptions() {
 }
 
 function clearOptions() {
-  var clearStorage = storage.clear();
-  clearStorage.then(onCleared, onError);
+  var clearStorage = storage.clear(onCleared);
 }
 
 function onCleared() {
@@ -251,7 +260,7 @@ function onCleared() {
 }
 
 function onError(e) {
-  console.log(e);
+  console.error(e);
 }
 
 buttonSave.addEventListener('click', save)
