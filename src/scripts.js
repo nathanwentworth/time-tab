@@ -4,7 +4,7 @@ const OPTION_DEFAULTS = {
   'secondsOn': false,
   'flashSep': false,
   'textColor': '#fff',
-  'background': '#555',
+  'background': '#394146',
   'font': 'Rubik:500'
 }
 
@@ -38,14 +38,14 @@ var browser = browser || chrome;
 var storage = browser.storage.local;
 
 window.addEventListener('load', function () {
-  init()
+  init();
 })
 
 function init() {
 
-  hEl = document.getElementById("minute");
-  mEl = document.getElementById("hour");
-  sEl = document.getElementById("seconds");
+  hEl = document.getElementById('minute');
+  mEl = document.getElementById('hour');
+  sEl = document.getElementById('seconds');
 
   hmSep = document.getElementById('hm-sep');
   msSep = document.getElementById('ms-sep');
@@ -63,9 +63,9 @@ function load() {
 }
 
 function onLoad(item) {
-  console.log('loaded options')
+  console.log('loaded options', item)
   options = item || OPTION_DEFAULTS
-  if (item == undefined) {
+  if (!item || (!item.color && !item.background && !item.textColor)) {
     options = OPTION_DEFAULTS
   } else {
     if (options.color) {
@@ -83,14 +83,10 @@ function onLoad(item) {
 }
 
 function setBackground() {
-  if (options.background.charAt(0) == '#') {
-    document.body.style.backgroundColor = options.background + "";
-  } else if (options.background.substr(0,4) == 'http') {
+  if (options.background.indexOf('http') > -1) {
     document.body.style.backgroundImage = "url('" + options.background + "')";
-  } else if (options.background.length == 3 || options.background.length == 6) {
-    document.body.style.backgroundColor = options.background + "";
   } else {
-    document.body.style.background = "" + options.background + ";";
+    document.body.style.background = options.background;
   }
 
   document.getElementById('backColor').value = options.background;
@@ -208,7 +204,12 @@ function setFont() {
   var fontUrl = 'https://fonts.googleapis.com/css?family=' + fontToLoad;
   link.href = fontUrl;
 
-  document.body.style.fontFamily = options.font.substring(0, options.font.indexOf(':'))
+  let cssFontFamily = options.font;
+  if (cssFontFamily.indexOf(':') > -1) {
+    cssFontFamily = cssFontFamily.substring(0, options.font.indexOf(':'));
+  }
+
+  document.body.style.fontFamily = cssFontFamily;
 }
 
 function save() {

@@ -25,6 +25,13 @@
 			justify-content: center;
 			height: 100vh;
 		}
+		p {
+			margin-bottom: 0.3em;
+		}
+		.small {
+			margin-top: 0.1em;
+			font-size: 0.9em;
+		}
 
 		.hidden {
 			display: none;
@@ -53,6 +60,9 @@
 
 		#button-settings {
 			position: absolute;
+			padding: 0;
+			border: 0;
+			background: transparent;
 			bottom: 32px;
 			left: 32px;
 			width: 48px;
@@ -60,7 +70,9 @@
 			opacity: 0.3;
 			transition: opacity 0.2s;
 		}
-		#button-settings:hover, #button-settings.active {
+		#button-settings:hover,
+		#button-settings:focus,
+		#button-settings.active {
 			opacity: 1;
 		}
 		#options {
@@ -75,6 +87,10 @@
 		#options *:first-child {
 			margin-top: 0;
 		}
+		.help {
+			font-size: 0.9em;
+			margin-left: 0.5em;
+		}
 
 		span {
 			font-size: 256px;
@@ -85,8 +101,8 @@
 		}
 		a {
 			color:#394146;
-			text-decoration: none;
-			padding-right: 32px;
+			/*text-decoration: none;*/
+			/*padding-right: 32px;*/
 		}
 		a:last-child {
 			padding-right: 0;
@@ -100,35 +116,36 @@
  			<span id="hour"></span><span id="hm-sep">:</span><span id="minute"></span><span id="ms-sep">:</span><span id="seconds"></span>
 		</div>
 
-		<div id='button-settings'>
+		<button id='button-settings'>
 			<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" xml:space="preserve">
 			<path id='gear' d="M20,14.5v-2.9l-1.8-0.3c-0.1-0.4-0.3-0.8-0.6-1.4l1.1-1.5l-2.1-2.1l-1.5,1.1c-0.5-0.3-1-0.5-1.4-0.6L13.5,5h-2.9l-0.3,1.8C9.8,6.9,9.4,7.1,8.9,7.4L7.4,6.3L5.3,8.4l1,1.5c-0.3,0.5-0.4,0.9-0.6,1.4L4,11.5v2.9l1.8,0.3c0.1,0.5,0.3,0.9,0.6,1.4l-1,1.5l2.1,2.1l1.5-1c0.4,0.2,0.9,0.4,1.4,0.6l0.3,1.8h3l0.3-1.8c0.5-0.1,0.9-0.3,1.4-0.6l1.5,1.1l2.1-2.1l-1.1-1.5c0.3-0.5,0.5-1,0.6-1.4L20,14.5z M12,16c-1.7,0-3-1.3-3-3s1.3-3,3-3s3,1.3,3,3S13.7,16,12,16z"/>
 			</svg>
-		</div>
+		</button>
 
 		<div id='options' class="hidden">
 		  <p>Background: <input type="text" id="backColor" placeholder="#eee"></p>
-		  <p>(can take hex code or image url)</p>
+		  <p class="small">(can take <a href="https://www.w3schools.com/colors/colors_picker.asp">hex color codes</a>, <a href="https://css-tricks.com/snippets/css/named-colors-and-hex-equivalents/">color names</a>, or an image url)</p>
 		  <p>Text Color: <input type="text" id="textColor" placeholder="#394146"></p>
-		  <p>(hex only)</p>
+		  <p class="small">(hex only)</p>
 		  <p>Font: <input type="text" id="font" placeholder="Rubik:500"></p>
-		  <p>(from <a href="https://fonts.google.com/">Google Fonts</a>)</p>
+		  <p class="small">(from <a href="https://fonts.google.com/">Google Fonts</a>)</p>
 
 		  <p><label>
 		    <input type="checkbox" id="sec">
-		    Show seconds?
+		    Show seconds
 		  </label>
 		  <label>
 		    <input type="checkbox" id="military">
-		    24 Hour time?
+		    24 hour time
 		  </label><label>
 		    <input type="checkbox" id="flashSep">
-		    Flash Separators?
+		    Flash separators
 		  </label></p>
 
 		  <div id="status"></div>
 		  <button id="save">Save</button>
 		  <button id="cancel">Cancel</button>
+		  <a class="help" href="https://nathanwentworth.co/projects/time-tab/#help">Help?</a>
 		</div>
 	</div>
 
