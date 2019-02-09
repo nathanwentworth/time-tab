@@ -99,7 +99,7 @@ function setTextColor() {
 }
 
 function loadOptions() {
-  color();
+  setBackground();
   textColor();
   getFont();
   setSeconds();
@@ -136,20 +136,6 @@ function time() {
   hEl.textContent = "" + min;
   mEl.textContent = "" + hr;
   sEl.textContent = "" + sec;
-}
-
-function color() {
-  if (options.background.charAt(0) == '#') {
-    document.body.style.backgroundColor = options.background + "";
-  } else if (options.background.substr(0,4) == 'http') {
-    document.body.style.backgroundImage = "url('" + options.background + "')";
-  } else if (options.background.length == 3 || options.background.length == 6) {
-    document.body.style.backgroundColor = options.background + "";
-  } else {
-    document.body.style.background = "" + options.background + ";";
-  }
-
-  document.getElementById('backColor').value = options.background;
 }
 
 function textColor() {
@@ -226,7 +212,6 @@ function save() {
   })
 
   setSeconds()
-  color()
   time()
   military()
   textColor()
